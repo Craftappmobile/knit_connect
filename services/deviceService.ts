@@ -1,5 +1,5 @@
 // services/deviceService.ts
-import { supabase } from '../lib/supabaseClient';
+import { supabase } from '@/config/supabase';
 import * as Device from 'expo-device';
 import * as Application from 'expo-application';
 import { DeviceRegistrationParams, UserDevice } from '../types/database';
