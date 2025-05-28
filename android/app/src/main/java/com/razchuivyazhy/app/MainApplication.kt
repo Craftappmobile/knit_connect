@@ -16,6 +16,9 @@ import com.facebook.soloader.SoLoader
 import expo.modules.ApplicationLifecycleDispatcher
 import expo.modules.ReactNativeHostWrapper
 
+// Імпортуємо OneSignal 5.x
+import com.onesignal.OneSignal
+
 class MainApplication : Application(), ReactApplication {
 
   override val reactNativeHost: ReactNativeHost = ReactNativeHostWrapper(
@@ -48,6 +51,21 @@ class MainApplication : Application(), ReactApplication {
       load()
     }
     ApplicationLifecycleDispatcher.onApplicationCreate(this)
+    
+    // Ініціалізація OneSignal 5.x з мінімальним API
+    try {
+      println("Початок ініціалізації OneSignal SDK 5.x...")
+      
+      // Ініціалізуємо OneSignal з App ID (OneSignal 5.x API)
+      println("Виконуємо OneSignal.initWithContext з App ID...")
+      OneSignal.initWithContext(this, "064a7314-cd39-49f2-acb8-391e8446bc38")
+      
+      println("✅ OneSignal 5.x успішно ініціалізовано з нативного коду")
+      
+    } catch (e: Exception) {
+      println("❌ Помилка ініціалізації OneSignal 5.x з нативного коду: ${e.message}")
+      e.printStackTrace()
+    }
   }
 
   override fun onConfigurationChanged(newConfig: Configuration) {

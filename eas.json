@@ -1,0 +1,34 @@
+{
+  "cli": {
+    "version": ">= 5.9.1"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "development",
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleDebug"
+      },
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://ojfqvdfactdrdwydkurk.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qZnF2ZGZhY3RkcmR3eWRrdXJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgxOTcxNjYsImV4cCI6MjA2Mzc3MzE2Nn0.PFfLoRgRqjH7vCrcIDwU-zLwU2Tv0_j6LPfIkZZbsK4",
+        "EXPO_PUBLIC_ONESIGNAL_APP_ID": "064a7314-cd39-49f2-acb8-391e8446bc38"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "channel": "preview",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "production": {
+      "channel": "production"
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
