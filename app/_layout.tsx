@@ -1,13 +1,35 @@
 import "../global.css";
-
 import { Stack } from "expo-router";
+import { Text, View } from "react-native";
+import { useEffect } from "react";
 
 import { AuthProvider } from "@/context/supabase-provider";
 import { useColorScheme } from "@/lib/useColorScheme";
 import { colors } from "@/constants/colors";
+import { useNotifications } from "@/hooks/useNotifications";
 
 export default function AppLayout() {
 	const { colorScheme } = useColorScheme();
+	// Використовуємо хук для ініціалізації нотифікацій
+	const notifications = useNotifications();
+	
+	useEffect(() => {
+		const setupNotifications = async () => {
+			console.log('Перевіряємо доступність нотифікацій...');
+			
+			if (notifications.isAvailable) {
+				console.log('🔔 Нотифікації доступні!');
+				// Запитуємо дозволи, якщо потрібно
+				const hasPermission = await notifications.requestPermission();
+				console.log('Статус дозволів на нотифікації:', hasPermission);
+			} else {
+				console.log('⚠️ Нотифікації недоступні');
+				// Тут можна додати альтернативну логіку для середовищ без OneSignal
+			}
+		};
+		
+		setupNotifications();
+	}, [notifications.isAvailable]);
 
 	return (
 		<AuthProvider>

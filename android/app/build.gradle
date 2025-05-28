@@ -1,6 +1,8 @@
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+// Додаємо Google Services Gradle plugin
+apply plugin: "com.google.gms.google-services"
 
 def projectRoot = rootDir.getAbsoluteFile().getParentFile().getAbsolutePath()
 
@@ -150,6 +152,17 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
+
+    // Імпортуємо Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.14.0"))
+    
+    // Додаємо залежності Firebase - можна додати необхідні вам сервіси
+    // При використанні BoM не потрібно вказувати версії для Firebase залежностей
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-messaging") // Для Push-повідомлень
+    
+    // Додаємо OneSignal (версія 5.x)
+    implementation('com.onesignal:OneSignal:[5.0.0, 5.99.99]')
 
     def isGifEnabled = (findProperty('expo.gif.enabled') ?: "") == "true";
     def isWebpEnabled = (findProperty('expo.webp.enabled') ?: "") == "true";
