@@ -1,3 +1,13 @@
+/**
+ * Єдина точка ініціалізації Supabase клієнта для проєкту "Розрахуй і В'яжи".
+ * 
+ * Використовує LargeSecureStore для безпечного зберігання сесії та
+ * має логіку обробки AppState для коректного оновлення токенів.
+ * 
+ * Цей файл повинен бути єдиним джерелом для імпорту клієнта Supabase:
+ * import { supabase } from "@/config/supabase";
+ */
+
 import { AppState } from "react-native";
 
 import "react-native-get-random-values";
