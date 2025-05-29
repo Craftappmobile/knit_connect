@@ -18,6 +18,47 @@ export interface DeviceRegistrationParams {
   appVersion?: string;
 }
 
+export interface Subscription {
+  id: string;
+  user_id: string;
+  status: 'active' | 'inactive' | 'expired';
+  plan_type: 'monthly' | 'yearly';
+  expiry_date: string;
+  price_paid: number;
+  promo_code_used?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Payment {
+  id: string;
+  user_id: string;
+  amount: number;
+  status: 'pending' | 'completed' | 'failed';
+  plan_type: 'monthly' | 'yearly';
+  wayforpay_transaction_id?: string;
+  created_at: string;
+}
+
+export interface PromoCode {
+  id: string;
+  code: string;
+  discount_percent: number;
+  valid_from: string;
+  valid_until?: string;
+  max_uses?: number;
+  current_uses: number;
+  active: boolean;
+}
+
+export interface PlanDetails {
+  type: 'monthly' | 'yearly';
+  originalPrice: number;
+  discountPercent: number;
+  finalPrice: number;
+  promoCode: string | null;
+}
+
 export interface Database {
   public: {
     Tables: {
@@ -29,6 +70,30 @@ export interface Database {
           last_updated?: string;
         };
         Update: Partial<Omit<UserDevice, 'id' | 'created_at'>>;
+      };
+      subscriptions: {
+        Row: Subscription;
+        Insert: Omit<Subscription, 'id' | 'created_at' | 'updated_at'> & {
+          id?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<Omit<Subscription, 'id' | 'created_at'>>;
+      };
+      payments: {
+        Row: Payment;
+        Insert: Omit<Payment, 'created_at'> & {
+          created_at?: string;
+        };
+        Update: Partial<Omit<Payment, 'id' | 'created_at'>>;
+      };
+      promo_codes: {
+        Row: PromoCode;
+        Insert: Omit<PromoCode, 'id' | 'created_at'> & {
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<Omit<PromoCode, 'id'>>;
       };
     };
     Functions: {
