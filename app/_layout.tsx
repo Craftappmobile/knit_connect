@@ -36,6 +36,12 @@ export default function AppLayout() {
 			<Stack screenOptions={{ headerShown: false, gestureEnabled: false }}>
 				<Stack.Screen name="(protected)" />
 				<Stack.Screen name="welcome" />
+				<Stack.Screen name="screenshots-preview" />
+				<Stack.Screen name="subscription-plans" />
+				<Stack.Screen name="registration" />
+				<Stack.Screen name="payment" />
+				<Stack.Screen name="payment-success" />
+				<Stack.Screen name="payment-error" />
 				<Stack.Screen
 					name="sign-up"
 					options={{
